@@ -34,9 +34,7 @@ public class RunJemerTests {
 //	        in.close();
 	        
 	        File jmxFile = new File(find(file));//      "/src/test/jmeter/Test1.jmx");
-	        HashTree testPlanTree = SaveService.loadTree(jmxFile);
-	        
-	       
+	        HashTree testPlanTree = SaveService.loadTree(jmxFile);	       
 	
 	        // Run JMeter Test
 	        jmeter.configure(testPlanTree);

@@ -62,33 +62,61 @@
   
   <build>
         <plugins>
-<!--             <plugin> -->
-<!--                 <groupId>com.lazerycode.jmeter</groupId> -->
-<!--                 <artifactId>jmeter-maven-plugin</artifactId> -->
-<!--                 <version>1.4.1</version> -->
-<!--                 <executions> -->
-<!--                     <execution> -->
-<!--                         <id>jmeter-tests</id> -->
-<!--                         <phase>verify</phase> -->
-<!--                         <goals> -->
-<!--                             <goal>jmeter</goal> -->
-<!--                         </goals> -->
-<!--                     </execution> -->
-<!--                 </executions> -->
-<!--             </plugin> -->
+		     <plugin>
+       			<groupId>org.codehaus.mojo</groupId>
+        		<artifactId>exec-maven-plugin</artifactId>
+        		<version>1.2.1</version>
+        		<executions>
+          			<execution>
+            			<goals><goal>java</goal></goals>
+          			</execution>
+        		</executions>
+        		<configuration>
+	        		<keepAlive>false</keepAlive>
+	        		<classpathScope>test</classpathScope>
+	        		<detail>true</detail>
+	          		<mainClass>org.attune.TestNGStart</mainClass>
+	          		<arguments>
+	          				<argument>suites.threadPoolSize:${suites.threadPoolSize}</argument>
+	            			<argument>suites.filenames:${suites.filenames}</argument>
+	            			<argument>configuration.filename:${configuration.filename}</argument>
+	            			<argument>report.output:${report.output}</argument>
+	            			<argument>suites.path:${suites.path}</argument>
+	            			<argument>test.listener:${test.listener}</argument>
+	            			<argument>buildFailedonError:${buildFailedonError}</argument>
+	            			<argument>suite.listener:${suite.listener}</argument>
+	            			<argument>exclude.group.draw:${exclude.group.draw}</argument>
+	            			<argument>exclude.group.si:${exclude.group.si}</argument>
+	            			<argument>exclude.group.locale:${exclude.group.locale}</argument>
+	            			<argument>exclude.billing.job:${exclude.billing.job}</argument>
+	            			<argument>exclude.dryadgui:${exclude.dryadgui}</argument>
+	          		</arguments>
+        		</configuration>
+      		</plugin>
 
 
- 		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-surefire-plugin</artifactId>
-			<version>2.19.1</version>
-			<configuration>
-				<skipTests>true</skipTests>
-			</configuration>
-      	</plugin>
-      
-      
+	 		<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.19.1</version>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+	      	</plugin>
+            
         </plugins>
+        
+        
+       	<resources>
+			<resource>
+				<targetPath>${project.basedir}/src/test/resources/SuitesXML/Suites</targetPath>
+					<directory>${project.basedir}/src/test/resources/SuitesXML/JmeterSuite/</directory>
+		        	<includes>
+		            	<include>*.xml</include>
+					</includes>
+	    	</resource>
+        </resources>
+        	
     </build>
     
 </project>
