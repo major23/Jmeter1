@@ -279,15 +279,15 @@ public final class TestNGStart {
 	
 	@SuppressWarnings("rawtypes")
 	private static void setListeners(String testListener,String suiteListener){
-//		//Insert Default Listeners for ReportNG
-//		List<Class> classes= new ArrayList<Class>();
-//		Class htmlListener = org.uncommons.reportng.HTMLReporter.class;
-//		Class xmlReporter  = org.testng.reporters.XMLReporter.class;
-//		tng.setUseDefaultListeners(false);
-//		classes.add(htmlListener);
-//		classes.add(xmlReporter);
-//		logger.info("Listener         : "+htmlListener.getCanonicalName());
-//		logger.info("Listener         : "+xmlReporter.getCanonicalName());
+		//Insert Default Listeners for ReportNG
+		List<Class> classes= new ArrayList<Class>();
+		Class htmlListener = org.uncommons.reportng.HTMLReporter.class;
+		Class xmlReporter  = org.testng.reporters.XMLReporter.class;
+		tng.setUseDefaultListeners(false);
+		classes.add(htmlListener);
+		classes.add(xmlReporter);
+		logger.info("Listener         : "+htmlListener.getCanonicalName());
+		logger.info("Listener         : "+xmlReporter.getCanonicalName());
 //		//Insert Optional Listeners
 //		Class listener = null;
 //		try{

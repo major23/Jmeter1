@@ -3,10 +3,10 @@
 
 <suite name="Test01 Suite" parallel="false" thread-count="1" allow-return-values="true">
 	
-	<listeners>
-		<listener class-name="org.uncommons.reportng.HTMLReporter"/>
-		<listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
-	</listeners>
+<!-- 	<listeners> -->
+<!-- 		<listener class-name="org.uncommons.reportng.HTMLReporter"/> -->
+<!-- 		<listener class-name="org.uncommons.reportng.JUnitXMLReporter"/> -->
+<!-- 	</listeners> -->
 	
 	
 	<test name="01 Test01 Description">
