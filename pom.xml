@@ -120,6 +120,11 @@
 						<goals>
 							<goal>jmeter</goal>
 						</goals>
+						<configuration>
+                        	<testFilesExcluded>
+                            	<excludeJMeterTestFile>*.jmx</excludeJMeterTestFile>
+                            </testFilesExcluded>
+                        </configuration>
 					</execution>
 				</executions>
 			</plugin>
