@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Test01 Suite" parallel="false" thread-count="1" allow-return-values="true">
+	
+
+	
+	<test name="01 Test01 Description">
+ 		<parameter name="jmxFile" value="Test1.jmx"/>
+      	<classes>
+     		<class name="te.AAA" />    		
+		</classes>
+    </test>
+    
+
+    
+	
+	</suite>
