@@ -6,7 +6,6 @@ import org.apache.jmeter.util.JMeterUtils;
 import org.apache.jorphan.collections.HashTree;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -27,15 +26,9 @@ public class RunJemerTests {
 	
 	        // Initialize JMeter SaveService
 	        SaveService.loadProperties();
-	
-	        // Load existing .jmx Test Plan
-//	        FileInputStream in = new FileInputStream("src/test/jmeter/AttueUSers3.jmx");
-//	        HashTree testPlanTree = SaveService.loadTree(in);
-//	        in.close();
 	        
-	        File jmxFile = new File(find(file));//      "/src/test/jmeter/Test1.jmx");
-	        HashTree testPlanTree = SaveService.loadTree(jmxFile);	       
-	
+	        File jmxFile = new File(find(file));
+	        HashTree testPlanTree = SaveService.loadTree(jmxFile);	 	
 	        // Run JMeter Test
 	        jmeter.configure(testPlanTree);
 	        System.out.println("Running jmeter test: "+jmxFile);
