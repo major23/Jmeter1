@@ -6,15 +6,18 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class Version {
+public class Test01 {
 	
 
 	@Parameters({"jmxFile"})
-	@Test
+	@Test(priority=1)
 	public void PerTest(@Optional String file) {
 		RunJmeter ob=new RunJmeter();
-		int a= ob.execute(file);
+		int a= ob.executeTest(file);
 		Assert.assertEquals(1, a);
   }
 
+	
+	
+	
 }
