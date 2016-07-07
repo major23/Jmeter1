@@ -31,68 +31,69 @@ public class RunJmeter {
 
 	 public int executeTest(String file)
 	 {		    	
-		try
-    	{
-	        StandardJMeterEngine jmeter = new StandardJMeterEngine();
-	        // Initialize Properties, logging, locale, etc.
-	        JMeterUtils.loadJMeterProperties(JMETER_HOME+"/bin/jmeter.properties");
-	        JMeterUtils.setJMeterHome(JMETER_HOME);
+		 try
+		 {
+			 StandardJMeterEngine jmeter = new StandardJMeterEngine();
+			 // Initialize Properties, logging, locale, etc.
+			 JMeterUtils.loadJMeterProperties(JMETER_HOME+"/bin/jmeter.properties");
+			 JMeterUtils.setJMeterHome(JMETER_HOME);
 	        
-	        JMeterUtils.initLogging();// you can comment this line out to see extra log messages of i.e. DEBUG level
-	        JMeterUtils.initLocale();	
+			 JMeterUtils.initLogging();// you can comment this line out to see extra log messages of i.e. DEBUG level
+			 JMeterUtils.initLocale();	
 		
-	        // Initialize JMeter SaveService
-	        SaveService.loadProperties();
+			 //Initialize JMeter SaveService
+			 SaveService.loadProperties();
 	        
-	        //define jmx file for execution
-	        File jmxFile = new File(find(file));
-	        HashTree testPlanTree = SaveService.loadTree(jmxFile);		        
+			 //define jmx file for execution
+			 File jmxFile = new File(find(file));
+			 HashTree testPlanTree = SaveService.loadTree(jmxFile);		        
 	        
-	        //enable .jtl report generation for the .jmx run and define target location
-	        Summariser summer = null;
-	        String summariserName = JMeterUtils.getPropDefault("summariser.name", "summary");
-	        if (summariserName.length() > 0) {
-	            summer = new Summariser(summariserName);
-	        }
-	        String logFile = System.getProperty("user.dir") +"/target/jmeter/report/"+file+".jtl";
-	        ResultCollector logger = new ResultCollector(summer);
-	        logger.setFilename(logFile);
-	        testPlanTree.add(testPlanTree.getArray()[0], logger);        
-	        
-	        // Run JMeter Test
-	        jmeter.configure(testPlanTree);
-	        System.out.println("Running jmeter test: "+jmxFile);
-	        jmeter.run();	        	        
-	        
-	        //After test run generate an html report from the jtl report and place it on the same folder
-	        TransformerFactory tFactory = TransformerFactory.newInstance();
-	        Source xslDoc = new StreamSource(JMETER_HOME+"/extras/jmeter-results-detail-report_21.xsl");
-	        Source xmlDoc = new StreamSource(logFile);
-	        String outputFileName = System.getProperty("user.dir") +"/target/jmeter/report/"+file+".html";
-	        OutputStream htmlFile = new FileOutputStream(outputFileName);
-	        Transformer transformer = tFactory.newTransformer(xslDoc);
-	        transformer.transform(xmlDoc, new StreamResult(htmlFile));        
-	        
-	    	return 1;
-    	}
-    	catch(Exception e)
-    	{
-    		return 0;
-    	}
-    }	    
-	    
-		@SuppressWarnings("rawtypes")
-		public String find(String fileName) throws Exception {
-		    File root = new File(System.getProperty("user.dir"));
-		    boolean recursive = true;
-		    Collection files = FileUtils.listFiles(root, null, recursive);
-		    for (Iterator iterator = files.iterator(); iterator.hasNext();) {
-		    	File file = (File) iterator.next();
-		        if(file.getName().equals(fileName)){
-		        	return file.getAbsolutePath();
-		        }
-		    }
-		    return fileName;
-		} 
+			 //enable .jtl report generation for the .jmx run and define target location
+			 Summariser summer = null;
+			 String summariserName = JMeterUtils.getPropDefault("summariser.name", "summary");
+			 if (summariserName.length() > 0) {
+				 summer = new Summariser(summariserName);
+			 }
+			 String logFile = System.getProperty("user.dir") +"/target/jmeter/report/"+file+".jtl";
+			 ResultCollector logger = new ResultCollector(summer);
+			 logger.setFilename(logFile);
+			 testPlanTree.add(testPlanTree.getArray()[0], logger);        
+	
+			 // Run JMeter Test
+			 jmeter.configure(testPlanTree);
+			 System.out.println("Running jmeter test: "+jmxFile);
+			 jmeter.run();	        	        
+				
+			 //After test run generate an html report from the jtl report and place it on the same folder
+			 TransformerFactory tFactory = TransformerFactory.newInstance();
+			 Source xslDoc = new StreamSource(JMETER_HOME+"/extras/jmeter-results-detail-report_21.xsl");
+			 Source xmlDoc = new StreamSource(logFile);
+			 String outputFileName = System.getProperty("user.dir") +"/target/jmeter/report/"+file+".html";
+			 OutputStream htmlFile = new FileOutputStream(outputFileName);
+			 Transformer transformer = tFactory.newTransformer(xslDoc);
+			 transformer.transform(xmlDoc, new StreamResult(htmlFile));        
+			      
+			 return 1;
+		 }
+		 catch(Exception e)
+		 {
+			 return 0;
+		 }
+	 }
+	 
+	 
+	 @SuppressWarnings("rawtypes")
+	 public String find(String fileName) throws Exception {
+		 File root = new File(System.getProperty("user.dir"));
+		 boolean recursive = true;
+		 Collection files = FileUtils.listFiles(root, null, recursive);
+		 for (Iterator iterator = files.iterator(); iterator.hasNext();) {
+			 File file = (File) iterator.next();
+			 if(file.getName().equals(fileName)){
+				 return file.getAbsolutePath();
+			 }
+		 }
+		 return fileName;
+	 } 
 	    
 	}
