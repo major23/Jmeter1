@@ -19,14 +19,28 @@ import org.apache.jmeter.reporters.Summariser;
 import org.apache.jmeter.save.SaveService;
 import org.apache.jmeter.util.JMeterUtils;
 import org.apache.jorphan.collections.HashTree;
+import org.testng.Assert;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 
-public class RunJmeter {
+public class RunJmeter {	
 	
 	/* Get the Jmeter home directory of your system
 	 * You can define it implicitly or make it an env. variable and retrieve it 
 	 */
 	//final String JMETER_HOME ="/home/nikos/Downloads/jmeter/apache-jmeter-3.0";
 	 public static final String JMETER_HOME = System.getenv("JMETER_HOME");	
+	 
+	 
+	
+	@Parameters({"jmxFile"})
+	@Test(priority=1)
+	public void JmeterTest(@Optional String file) throws Exception {
+		int a= executeTest(file);
+		Assert.assertEquals(1, a);
+	}
+	
 	 
 
 	 public int executeTest(String file)
@@ -96,4 +110,4 @@ public class RunJmeter {
 		 return fileName;
 	 } 
 	    
-	}
+}
