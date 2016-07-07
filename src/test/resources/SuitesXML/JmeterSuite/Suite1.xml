@@ -10,19 +10,18 @@
 	
 	
 	<test name="01 Test01 Description">
- 		<parameter name="jmxFile" value="Test1.jmx"/>
-      	<classes>
-     		<class name="te.Test01" />    		
+		<parameter name="jmxFile" value="Test1.jmx" />
+		<classes>
+			<class name="te.Test01" />
 		</classes>
-    </test>
+	</test>
     
-    <test name="02 Test02 Description">
- 		<parameter name="jmxFile" value="Test2.jmx"/>
-      	<classes>
-     		<class name="te.Test01" />    		
+	<test name="02 Test02 Description">
+		<parameter name="jmxFile" value="Test2.jmx" />
+		<classes>
+			<class name="te.Test01" />
 		</classes>
-    </test>
-    
-    
+	</test>
 	
-	</suite>
+
+</suite>
