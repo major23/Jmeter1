@@ -12,14 +12,14 @@
 	<test name="01 Test01 Description">
  		<parameter name="jmxFile" value="Test1.jmx"/>
       	<classes>
-     		<class name="te.Version" />    		
+     		<class name="te.Test01" />    		
 		</classes>
     </test>
     
     <test name="02 Test02 Description">
  		<parameter name="jmxFile" value="Test2.jmx"/>
       	<classes>
-     		<class name="te.Version" />    		
+     		<class name="te.Test01" />    		
 		</classes>
     </test>
     
